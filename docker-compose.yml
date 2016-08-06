@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  tcp-socket-2374:
+    build: .
+    container_name: tcp-socket-2374
+    ports:
+    - "127.0.0.1:2374:2374"
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    command: ["TCP-LISTEN:2374,fork", "UNIX-CONNECT:/var/run/docker.sock"]
+    restart: unless-stopped
+    read_only: true
